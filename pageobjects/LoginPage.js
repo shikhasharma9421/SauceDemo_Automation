@@ -11,6 +11,7 @@ class LoginPage {
         this.password    = page.locator('#password');
         this.loginBtn    = page.locator('#login-button');
         this.errorMsg    = page.locator('[data-test="error"]');
+        this.pagelogo    = page.locator('.login_logo');
     }
 
     async goTo() {
@@ -29,6 +30,18 @@ class LoginPage {
 
     async isLoginPageVisible() {
         return await this.username.isVisible();
+    }
+
+    async isPageLogoVisible() {
+        return await this.pagelogo.isVisible();
+    }
+
+    async isLoginButtonEnabled() {
+        return await this.loginBtn.isEnabled();
+    }
+
+    async getPageTitle() {
+        return await this.page.title();
     }
 }
 
