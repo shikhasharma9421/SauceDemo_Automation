@@ -33,4 +33,10 @@ test.describe('Login Tests', () => {
         expect(error).toContain('Username is required');
     });
 
+    test('Empty username and password not allow login', async () => {
+        await loginPage.login('', '');
+        const error = await loginPage.getErrorMessage();
+        expect(error).toContain('Username is required');
+    });
+
 });
