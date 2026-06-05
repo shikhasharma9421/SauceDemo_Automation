@@ -7,22 +7,22 @@ class InventoryPage {
 
     constructor(page) {
         this.page            = page;
+        this.appLogo         = page.locator('.app_logo');
         this.pageTitle       = page.locator('.title');
         this.productItems    = page.locator('.inventory_item');
-        this.productNames    = page.locator('.inventory_item_name');
-        this.productPrices   = page.locator('.inventory_item_price');
         this.productDescs    = page.locator('.inventory_item_desc');
+        this.productPrices   = page.locator('.inventory_item_price');
+        this.productNames    = page.locator('.inventory_item_name');
+        this.addToCartBtn    = page.locator('[data-test^="add-to-cart"]');
         this.sortDropdown    = page.locator('[data-test="product-sort-container"]');
-        this.cartBadge       = page.locator('.shopping_cart_badge');
-        this.cartIcon        = page.locator('.shopping_cart_link');
+        this.cartBadge       = page.locator('[data-test="shopping-cart-badge"]');
+        this.cartIcon        = page.locator('[data-test="shopping-cart-link"]');
         this.menuBtn         = page.locator('#react-burger-menu-btn');
         this.menuClose       = page.locator('#react-burger-cross-btn');
-        this.menuAllItems    = page.locator('#inventory_sidebar_link');
-        this.menuAbout       = page.locator('#about_sidebar_link');
-        this.menuLogout      = page.locator('#logout_sidebar_link');
-        this.menuReset       = page.locator('#reset_sidebar_link');
-        this.navLogo         = page.locator('.app_logo');
-        this.addToCartBtn    = page.locator('[data-test^="add-to-cart"]');
+        this.menuAllItems    = page.locator('[data-test="inventory-sidebar-link"]');
+        this.menuAbout       = page.locator('[data-test="about-sidebar-link"]');
+        this.menuLogout      = page.locator('[data-test="logout-sidebar-link"]');
+        this.menuReset       = page.locator('[data-test="reset-sidebar-link"]');  
     }
 
     async goTo() {
