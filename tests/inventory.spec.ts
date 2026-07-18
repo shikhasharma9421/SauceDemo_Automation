@@ -1,11 +1,11 @@
-const { test, expect } = require('@playwright/test');
-const { LoginPage }    = require('../pageobjects/LoginPage');
-const { InventoryPage } = require('../pageobjects/InventoryPage');
+import { test, expect } from '@playwright/test';
+import { LoginPage } from '../pageobjects/LoginPage';
+import { InventoryPage } from '../pageobjects/InventoryPage';
 
 test.describe('Inventory Page - Core Functionality', () => {
 
-    let loginPage;
-    let productsPage;
+    let loginPage: LoginPage;
+    let productsPage: InventoryPage;
 
     test.beforeEach(async ({ page }) => {
         loginPage    = new LoginPage(page);
@@ -27,10 +27,10 @@ test.describe('Inventory Page - Core Functionality', () => {
 
         for (let i = 0; i < count; i++) {
             const card    = cards.nth(i);
-            const title   = (await card.locator('.inventory_item_name').textContent()).trim();
-            const desc    = (await card.locator('.inventory_item_desc').textContent()).trim();
-            const price   = (await card.locator('.inventory_item_price').textContent()).trim();
-            const btnText = (await card.locator('[data-test^="add-to-cart"]').textContent()).trim();
+            const title   = (await card.locator('.inventory_item_name').textContent())?.trim();
+            const desc    = (await card.locator('.inventory_item_desc').textContent())?.trim();
+            const price   = (await card.locator('.inventory_item_price').textContent())?.trim();
+            const btnText = (await card.locator('[data-test^="add-to-cart"]').textContent())?.trim();
 
             expect(title,   `Product ${i + 1}: title should not be empty`).toBeTruthy();
             expect(desc,    `Product ${i + 1}: description should not be empty`).toBeTruthy();
@@ -45,7 +45,7 @@ test.describe('Inventory Page - Core Functionality', () => {
         const count         = await products.count();
 
         for (let i = 0; i < count; i++) {
-            const name = (await products.nth(i).locator('.inventory_item_name').textContent()).trim();
+            const name = (await products.nth(i).locator('.inventory_item_name').textContent())?.trim();
             if (name === targetProduct) {
                 const addBtn = products.nth(i).locator('[data-test^="add-to-cart"]');
                 await expect(addBtn).toHaveText('Add to cart');
@@ -98,7 +98,7 @@ test.describe('Inventory Page - Core Functionality', () => {
         const count         = await products.count();
 
         for (let i = 0; i < count; i++) {
-            const name = (await products.nth(i).locator('.inventory_item_name').textContent()).trim();
+            const name = (await products.nth(i).locator('.inventory_item_name').textContent())?.trim();
             if (name === targetProduct) {
                 await products.nth(i).locator('.inventory_item_name').click();
                 break;
@@ -128,7 +128,7 @@ test.describe('Inventory Page - Core Functionality', () => {
         const count    = await products.count();
 
         for (let i = 0; i < count; i++) {
-            const name = (await products.nth(i).locator('.inventory_item_name').textContent()).trim();
+            const name = (await products.nth(i).locator('.inventory_item_name').textContent())?.trim();
             if (name === targetProduct) {
                 const removeBtn = products.nth(i).locator('[data-test^="remove"]');
                 await expect(removeBtn).toHaveText('Remove');

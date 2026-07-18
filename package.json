@@ -10,8 +10,8 @@
     "report": "playwright show-report"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Shikha Sharma",
+  "license": "MIT",
   "type": "commonjs",
   "devDependencies": {
     "@playwright/test": "^1.59.1",
