@@ -3,9 +3,17 @@
  * @description Login Page - SauceDemo Automation Framework
  */
 
-class LoginPage {
+import { Page, Locator } from '@playwright/test';
 
-    constructor(page) {
+export class LoginPage {
+    readonly page: Page;
+    readonly username: Locator;
+    readonly password: Locator;
+    readonly loginBtn: Locator;
+    readonly errorMsg: Locator;
+    readonly pagelogo: Locator;
+
+    constructor(page: Page) {
         this.page        = page;
         this.username    = page.locator('#user-name');
         this.password    = page.locator('#password');
@@ -14,35 +22,33 @@ class LoginPage {
         this.pagelogo    = page.locator('.login_logo');
     }
 
-    async goTo() {
+    async goTo(): Promise<void> {
         await this.page.goto('/');
     }
 
-    async login(username, password) {
+    async login(username: string, password: string): Promise<void> {
         await this.username.fill(username);
         await this.password.fill(password);
         await this.loginBtn.click();
     }
 
-    async getErrorMessage() {
+    async getErrorMessage(): Promise<string | null> {
         return await this.errorMsg.textContent();
     }
 
-    async isLoginPageVisible() {
+    async isLoginPageVisible(): Promise<boolean> {
         return await this.username.isVisible();
     }
 
-    async isPageLogoVisible() {
+    async isPageLogoVisible(): Promise<boolean> {
         return await this.pagelogo.isVisible();
     }
 
-    async isLoginButtonEnabled() {
+    async isLoginButtonEnabled(): Promise<boolean> {
         return await this.loginBtn.isEnabled();
     }
 
-    async getPageTitle() {
+    async getPageTitle(): Promise<string> {
         return await this.page.title();
     }
 }
-
-module.exports = { LoginPage };
