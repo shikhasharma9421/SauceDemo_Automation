@@ -1,6 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { LoginPage } from '../pageobjects/LoginPage';
 import { InventoryPage } from '../pageobjects/InventoryPage';
+import { config } from '../utils/env';
 
 test.describe('Inventory Page - Core Functionality', () => {
 
@@ -11,7 +12,7 @@ test.describe('Inventory Page - Core Functionality', () => {
         loginPage    = new LoginPage(page);
         productsPage = new InventoryPage(page);
         await loginPage.goTo();
-        await loginPage.login('standard_user', 'secret_sauce');
+        await loginPage.login(config.standardUser.username, config.standardUser.password);
         await expect(page).toHaveURL(/inventory/);
     });
 

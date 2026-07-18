@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test';
 import { LoginPage } from '../pageobjects/LoginPage';
+import { config } from '../utils/env';
 
 test.describe('Login Tests', () => {
 
@@ -11,7 +12,7 @@ test.describe('Login Tests', () => {
     });
 
     test('Successful login with valid credentials', async ({ page }) => {
-        await loginPage.login('standard_user', 'secret_sauce');
+        await loginPage.login(config.standardUser.username, config.standardUser.password);
         await expect(page).toHaveURL(/inventory/);
     });
 

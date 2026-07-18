@@ -3,6 +3,7 @@ import { LoginPage } from '../pageobjects/LoginPage';
 import { InventoryPage } from '../pageobjects/InventoryPage';
 import { CartPage } from '../pageobjects/CartPage';
 import { CheckoutPage } from '../pageobjects/CheckoutPage';
+import { config } from '../utils/env';
 
 test.describe('Checkout Page', () => {
 
@@ -18,7 +19,7 @@ test.describe('Checkout Page', () => {
         checkoutPage  = new CheckoutPage(page);
 
         await loginPage.goTo();
-        await loginPage.login('standard_user', 'secret_sauce');
+        await loginPage.login(config.standardUser.username, config.standardUser.password);
         await inventoryPage.addProductToCartByName('Sauce Labs Backpack');
         await inventoryPage.clickCartIcon();
         await cartPage.clickCheckout();
