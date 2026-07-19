@@ -1,4 +1,5 @@
 import { defineConfig } from '@playwright/test';
+import { config } from './utils/env';
 
 export default defineConfig({
   testDir: './tests',
@@ -6,7 +7,7 @@ export default defineConfig({
   reporter: 'html',
 
   use: {
-    baseURL: 'https://www.saucedemo.com',
+    baseURL: config.baseURL,
     browserName: 'chromium',
     headless: false,
     screenshot: 'only-on-failure',

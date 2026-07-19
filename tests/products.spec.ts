@@ -2,6 +2,7 @@ import { test, expect } from '@playwright/test';
 import { LoginPage } from '../pageobjects/LoginPage';
 import { InventoryPage } from '../pageobjects/InventoryPage';
 import { ProductsPage } from '../pageobjects/ProductsPage';
+import { config } from '../utils/env';
 
 test.describe('Product Details Page', () => {
 
@@ -15,7 +16,7 @@ test.describe('Product Details Page', () => {
         productsPage  = new ProductsPage(page);
 
         await loginPage.goTo();
-        await loginPage.login('standard_user', 'secret_sauce');
+        await loginPage.login(config.standardUser.username, config.standardUser.password);
         await inventoryPage.clickProductTitleByName('Sauce Labs Backpack');
         await expect(page).toHaveURL(/inventory-item/);
     });
