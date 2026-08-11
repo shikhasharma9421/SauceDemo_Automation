@@ -1,37 +1,46 @@
-# E2E SauceDemo Playwright Automation Framework
+# SauceDemo E2E Automation Framework
 
-![Playwright Tests](https://github.com/shikhasharma9421/SauceDemo_Automation/actions/workflows/playwright.yml/badge.svg)
+Automated end-to-end UI test suite for [SauceDemo](https://saucedemo.com), built with Playwright and TypeScript using the Page Object Model (POM) design pattern.
 
-End-to-end UI test automation for [saucedemo.com](https://www.saucedemo.com) using Playwright + TypeScript, following the Page Object Model.
+The suite covers the complete purchase flow — login, inventory browsing, product details, cart, and checkout — with dedicated spec files per screen and a full end-to-end journey test.
 
-Covers the full purchase journey — login, inventory, product details, cart, and checkout — with one page object and one spec file per screen, plus a full end-to-end flow.
+## Getting Started
 
-## Setup & Run
+Install dependencies and browsers:
 
-```bash
+```
 npm install
 npx playwright install
-npm test                 # run all tests
+```
+
+Run the tests:
+
+```
+npm test                 # run the full suite
 npm run test:e2e         # run only the end-to-end flow
-npm run report           # view the last HTML report
+npm run report            # view the last HTML report
 ```
 
 ## Configuration
 
-`baseURL` and the standard test-user credentials are read from environment variables (`utils/env.ts`), falling back to SauceDemo's public defaults if unset. To override for a different environment:
+The base URL and test user credentials are read from environment variables, defined in `utils/env.ts`. If unset, the suite falls back to SauceDemo's default public credentials.
 
-```bash
+To customise for a different environment:
+
+```
 cp .env.example .env
-# then edit .env
+# edit .env with your values
 ```
 
-## Structure
+## Project Structure
 
-- `pageobjects/` — one class per page (Login, Inventory, Products, Cart, Checkout)
-- `tests/` — matching spec per page, plus `e2e.spec.ts` for the full flow
-- `utils/env.ts` — environment config (baseURL, standard-user credentials)
-- `playwright.config.ts` — baseURL, timeouts, trace/video/screenshot on failure
+| Folder | Purpose |
+|---|---|
+| `pageobjects/` | One class per page (Login, Inventory, Products, Cart, Checkout) |
+| `tests/` | Matching spec file per page, plus `e2e.spec.ts` for the full flow |
+| `utils/env.ts` | Environment configuration (base URL, credentials) |
+| `playwright.config.ts` | Base URL, timeouts, and trace/video/screenshot capture settings |
 
-## CI
+## Continuous Integration
 
-GitHub Actions ([.github/workflows/playwright.yml](.github/workflows/playwright.yml)) runs the full suite on every push/PR.
+This project runs automated tests on every push and pull request via GitHub Actions (`.github/workflows/playwright.yml`), and is also integrated with Jenkins for local pipeline execution.
